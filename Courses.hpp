@@ -1,0 +1,14 @@
+//
+// Created by JGreenwell on 4/5/2023.
+//
+
+#ifndef DATASTRUCTURESAMPLE_COURSES_HPP
+#define DATASTRUCTURESAMPLE_COURSES_HPP
+
+
+class Courses {
+
+};
+
+
+#endif //DATASTRUCTURESAMPLE_COURSES_HPP
