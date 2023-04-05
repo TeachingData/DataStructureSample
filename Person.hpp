@@ -19,7 +19,9 @@ private:
     long ssn;
     string name;
     int grade;
+    int age;
 
+    void calc_age();
 public:
     Person()=default;
     Person(int, long, string, int);
@@ -27,13 +29,13 @@ public:
     int set_student();
     int get_yearofbirth();
     string get_ssn();
+    int get_age();
 
     string get_firstname();
     string get_lastname();
     string get_fullname();
 
     string get_grade();
-
 };
 
 

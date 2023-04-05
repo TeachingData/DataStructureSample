@@ -1,7 +1,6 @@
 #include <iostream>
 #include <array>
 #include <algorithm>
-#include <limits>
 #include "Person.hpp"
 
 
@@ -13,13 +12,12 @@ const std::array<std::string, 5> ALLCOURSES = {"COP 2006", "COP 3003", "COP 2001
 std::string get_course();
 bool check_if_more(const std::string&, std::string);
 void display_choices(std::array<std::string, ALLCOURSES.size()-2>);
-int calc_age(int);
 
 int main() {
   Person student = Person();
   student.set_student();
   std::cout << "Welcome " << student.get_fullname() << "!\n";
-  std::cout << "You are " << calc_age(student.get_yearofbirth()) << "years old\n";
+  std::cout << "You are " << student.get_age() << "years old\n";
 
   // setup array with 3 0 values (for now)
   // We are now going to shift this to a string array of "courses"
@@ -41,11 +39,6 @@ int main() {
 
   // Let's use a basic algorithm from the algorithm library to sort our array then print it
   display_choices(courses);
-}
-
-int calc_age(int yob) {
-    // showing we can use yob in local scope over struct scope
-    return 2023 - yob;
 }
 
 std::string get_course() {
