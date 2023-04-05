@@ -2,21 +2,8 @@
 #include <array>
 #include <algorithm>
 #include <limits>
+#include "Person.hpp"
 
-// person structure (Plain Old Data Structure)
-// with member types for yob (year of birth), ssn, name, and grade year
-//   1, freshman to 4, senior
-
-// note: {} used to initialize the members to null, declared global student object for access
-struct PERSON {
-    int yob{};
-    long ssn{};
-    std::string name{};
-    int grade{};
-} student;
-
-// using this as an example - not recommended usage for struct
-const std::array<std::string, 4> PERSONCATS = {"year of birth", "ssn", "name", "grade"};
 
 // constant for possible courses
 const std::array<std::string, 5> ALLCOURSES = {"COP 2006", "COP 3003", "COP 2001", "CEN 3031", "CNT 4104"};
@@ -26,13 +13,13 @@ const std::array<std::string, 5> ALLCOURSES = {"COP 2006", "COP 3003", "COP 2001
 std::string get_course();
 bool check_if_more(const std::string&, std::string);
 void display_choices(std::array<std::string, ALLCOURSES.size()-2>);
-void get_student();
 int calc_age(int);
 
 int main() {
-  get_student();
-  std::cout << "Welcome " << student.name << "!\n";
-  std::cout << "You are " << calc_age(student.yob) << "years old\n";
+  Person student = Person();
+  student.set_student();
+  std::cout << "Welcome " << student.get_fullname() << "!\n";
+  std::cout << "You are " << calc_age(student.get_yearofbirth()) << "years old\n";
 
   // setup array with 3 0 values (for now)
   // We are now going to shift this to a string array of "courses"
@@ -54,38 +41,6 @@ int main() {
 
   // Let's use a basic algorithm from the algorithm library to sort our array then print it
   display_choices(courses);
-}
-
-void get_student() {
-    // 2nd iteration of get students
-    for (int i=0; i<PERSONCATS.size(); i++) {
-        std::cout << "Please enter your " << PERSONCATS[i] << ": ";
-
-        switch(i) {
-            case 0:
-                std::cin >> std::ws;
-                std::cin >> student.yob;
-                std::cin.ignore(1000, '\n');
-                break;
-            case 1:
-                std::cin >> std::ws;
-                std::cin >> student.ssn;
-                std::cin.ignore(1000, '\n');
-                break;
-            case 2:
-                std::getline(std::cin>>std::ws, student.name);
-                break;
-            case 3:
-                std::cin >> std::ws;
-                std::cin >> student.grade;
-                // #include <limits>
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                break;
-            default:
-                std::cout << "Invalid option";
-        }
-    }
-    // third iteration fully dynamic would need - tuple, map, or full class with getter functions
 }
 
 int calc_age(int yob) {

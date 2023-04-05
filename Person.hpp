@@ -5,12 +5,16 @@
 #ifndef DATASTRUCTURESAMPLE_PERSON_HPP
 #define DATASTRUCTURESAMPLE_PERSON_HPP
 
-#include<string>
+#include<iostream>
+#include<array>
 
 using std::string;
 
 class Person {
 private:
+    // using this as an example - not recommended usage for struct
+    const std::array<std::string, 4> PERSONCATS = {"year of birth", "ssn", "name", "grade"};
+
     int yob;
     long ssn;
     string name;
@@ -20,6 +24,7 @@ public:
     Person()=default;
     Person(int, long, string, int);
 
+    int set_student();
     int get_yearofbirth();
     string get_ssn();
 
