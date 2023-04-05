@@ -37,33 +37,43 @@ string Person::get_fullname() {
 }
 
 int Person::set_student() {
-        for (int i=0; i<PERSONCATS.size(); i++) {
-            std::cout << "Please enter your " << PERSONCATS[i] << ": ";
+    for (int i=0; i<PERSONCATS.size(); i++) {
+        std::cout << "Please enter your " << PERSONCATS[i] << ": ";
 
-            switch(i) {
-                case 0:
-                    std::cin >> std::ws;
-                    std::cin >> yob;
-                    std::cin.ignore(1000, '\n');
-                    break;
-                case 1:
-                    std::cin >> std::ws;
-                    std::cin >> ssn;
-                    std::cin.ignore(1000, '\n');
-                    break;
-                case 2:
-                    std::getline(std::cin>>std::ws, name);
-                    break;
-                case 3:
-                    std::cin >> std::ws;
-                    std::cin >> grade;
-                    // #include <limits>
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                    break;
-                default:
-                    std::cout << "Invalid option";
-            }
+        switch(i) {
+            case 0:
+                std::cin >> std::ws;
+                std::cin >> yob;
+                std::cin.ignore(1000, '\n');
+                break;
+            case 1:
+                std::cin >> std::ws;
+                std::cin >> ssn;
+                std::cin.ignore(1000, '\n');
+                break;
+            case 2:
+                std::getline(std::cin>>std::ws, name);
+                break;
+            case 3:
+                std::cin >> std::ws;
+                std::cin >> grade;
+                // #include <limits>
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                calc_age();
+                break;
+            default:
+                std::cout << "Invalid option";
         }
+    }
+}
+
+void Person::calc_age() {
+    // showing we can use yob in local scope over struct scope
+    age = 2023 - yob;
+}
+
+int Person::get_age() {
+    return age;
 }
 
 
