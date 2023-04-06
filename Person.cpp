@@ -36,7 +36,9 @@ string Person::get_fullname() {
     return name;
 }
 
-int Person::set_student() {
+void Person::set_student() {
+    std::cout << "\t\tToday is " << schedule.today << "\n"
+              << "----------------------------------------------------\n";
     for (int i=0; i<PERSONCATS.size(); i++) {
         std::cout << "Please enter your " << PERSONCATS[i] << ": ";
 
