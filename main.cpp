@@ -2,7 +2,7 @@
 #include <array>
 #include <algorithm>
 #include "Person.hpp"
-
+#include "Schedule.hpp"
 
 // constant for possible courses
 const std::array<std::string, 5> ALLCOURSES = {"COP 2006", "COP 3003", "COP 2001", "CEN 3031", "CNT 4104"};

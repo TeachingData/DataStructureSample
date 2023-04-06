@@ -7,6 +7,7 @@
 
 #include<iostream>
 #include<array>
+#include "Schedule.hpp"
 
 using std::string;
 
@@ -21,12 +22,13 @@ private:
     int grade;
     int age;
 
+    Schedule schedule;
     void calc_age();
 public:
     Person()=default;
     Person(int, long, string, int);
 
-    int set_student();
+    void set_student();
     int get_yearofbirth();
     string get_ssn();
     int get_age();
