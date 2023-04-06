@@ -2,18 +2,13 @@
 #include <array>
 #include <algorithm>
 #include "Person.hpp"
-#include "Schedule.hpp"
-
-// constant for possible courses
-const std::array<std::string, 5> ALLCOURSES = {"COP 2006", "COP 3003", "COP 2001", "CEN 3031", "CNT 4104"};
+#include "Courses.hpp"
 
 // prototypes
-// let's assume you can only choose 2 choices less than the number offered - electives and what not
-std::string get_course();
 bool check_if_more(const std::string&, std::string);
-void display_choices(std::array<std::string, ALLCOURSES.size()-2>);
 
 int main() {
+  Courses allcourses = Courses();
   Person student = Person();
   student.set_student();
   std::cout << "Welcome " << student.get_fullname() << "!\n";
@@ -22,11 +17,12 @@ int main() {
   // setup array with 3 0 values (for now)
   // We are now going to shift this to a string array of "courses"
   // let's assume you can only choose 2 choices less than the number offered - electives and what not
-  std::array<std::string, ALLCOURSES.size()-2> courses{};
+  // TODO: Integrate this with People (composite field? or just vector?)
+  std::array<std::string, allcourses.ALLCOURSES.size()-2> courses{};
   int count = 0;
 
   while(count < courses.size()) {
-    std::string course = get_course();
+    std::string course = allcourses.get_course();
     if (!course.empty()) {
         courses[count] = course;
         count++;
@@ -38,28 +34,7 @@ int main() {
   }
 
   // Let's use a basic algorithm from the algorithm library to sort our array then print it
-  display_choices(courses);
-}
-
-std::string get_course() {
-    // set a temp variable to check if course is valid
-    std::string course;
-
-    for (auto c : ALLCOURSES) {
-        // print each course and ask if this is it
-        // not efficient, but we'll refactor later
-
-        std::cout << "Is " << c << " a course your taking this semester? (y/n) ";
-        std::getline(std::cin>>std::ws, course);
-        // note - getline also eats the \n so no ignore needed
-        // however windows needs to also remove \r so change a bit here
-        // also removing leading whitespace
-
-        if (std::tolower(course[0]) == 'y') {
-            return c;
-        }
-    }
-    return "";
+  allcourses.display_choices(courses);
 }
 
 bool check_if_more(const std::string& question, std::string continue_option) {
@@ -76,13 +51,4 @@ bool check_if_more(const std::string& question, std::string continue_option) {
     return true;
   }
   return false;
-}
-
-void display_choices(std::array<std::string, ALLCOURSES.size()-2> to_display) {
-  std::cout << "Your " << to_display.size() << " choices were (from lowest to highest):\n";
-  std::sort(to_display.begin(), to_display.end());
-
-  for (const auto &e : to_display) {
-    std::cout << e << "\n";
-  }
 }
